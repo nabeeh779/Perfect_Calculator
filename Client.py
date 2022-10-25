@@ -1,9 +1,8 @@
 import pika
 import uuid
-
-def get_input():
-    #Gets the input from user
-    return input("Enter a number to check:")
+import Save
+from ManualFunctions import get_input
+import os,sys
     
 def on_reply_message_received(ch, method, properties, body):
     print(f"reply recieved: {body}")
@@ -20,8 +19,7 @@ def main():
         on_message_callback=on_reply_message_received)
         
     channel.queue_declare(queue='request-queue')
-
-    cor_id = str(uuid.uuid4())
+    cor_id = str(uuid.uuid4())#generate a unique id
 
     print("Starting Client")
     num = get_input()
@@ -37,4 +35,11 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print('Interrupted')
+        try:
+            sys.exit(0)
+        except SystemExit:
+            os._exit(0)
