@@ -13,7 +13,7 @@ def get_input():
 def check_if_perfect(n): 
     #This function check if number is perfect
     #First we check if the number exist in the DB if not we add it 
-    result = Save.is_exist_json(n)
+    result = Save.is_exist_numpy(n)
     if result == -1:
         #Check If the new number is perfect and save the result 
         sum = 1
@@ -23,10 +23,10 @@ def check_if_perfect(n):
                 sum = sum + i + n/i
             i += 1
         if sum == n and n!=1:
-            Save.save_toFile_json(n,True)
+            Save.save_toFile_numpy(n,True)
             return True
         else:
-            Save.save_toFile_json(n,False)
+            Save.save_toFile_numpy(n,False)
             return False       
     else:
         return result

@@ -6,7 +6,6 @@ QUEUE_NAME_1 ='request-queue'
 def RMQ_on_request_message_received(ch, method, properties, body):
     #Handle RMQ requsets messages
     try:
-        #check if message is a number
         isinstance(int(body.decode("utf-8")), numbers.Integral)
         answer = check_if_perfect(int(body.decode("utf-8")))
         print(f"Sending the Answer to client:{answer}")
