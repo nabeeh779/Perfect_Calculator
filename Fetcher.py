@@ -42,7 +42,8 @@ def option1():
 
 @app.route("/")
 def hello_world():
-    return "Welcome , choose option from /options"
+    
+    return jsonify(options)
  
 if __name__ == '__main__':
     app.run()
