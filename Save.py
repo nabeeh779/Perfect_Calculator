@@ -49,15 +49,19 @@ def save_toFile_numpy(elemnt,result):
     load_dict = np.append(load_dict, temp_dict)
     np.save(DATA_FILE_NUMPY,load_dict)
     
-def is_exist_numpy(elemnt):
+def is_exist_numpy(elemnt,flag):
     #Check if Given value exist in the npy file
     load_dict = np.load(DATA_FILE_NUMPY,allow_pickle=True)
     for dict in load_dict:
         if elemnt in dict:
-          return dict.get(elemnt) 
-        
+            if flag == 1:
+                #return if perfect 
+                 return dict.get(elemnt) 
+            else:
+                return True
+    return -1
+print(is_exist_numpy(5,0))       
     #Key not exist
-    return -1 
 
 def is_exist_json(elemnt):
     #Check if Given value exist in the json file
